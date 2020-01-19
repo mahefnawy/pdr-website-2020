@@ -1,0 +1,539 @@
+backend:
+  name: git-gateway
+  branch: master
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "blog-en"
+    label: "Blog - EN"
+    folder: "src/pages/blog/en"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog-post",
+        }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_blogpost",
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "featuredimage", widget: image }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "blog-ar"
+    label: "Blog - AR"
+    folder: "src/pages/blog/ar"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog-post",
+        }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "ar" }
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_blogpost",
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "featuredimage", widget: image }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "blog-pr"
+    label: "Blog - PR"
+    folder: "src/pages/blog/pr"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog-post",
+        }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "pr" }
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_blogpost",
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "featuredimage", widget: image }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "about"
+    label: "About"
+    folder: "src/pages/about"
+    fields:
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_about",
+        }
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "about-page",
+        }
+      - { label: "Name", name: "name", widget: "hidden", default: "about" }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
+      - { label: "Title", name: "title", widget: "hidden" }
+      - { label: "SEO Title", name: "seo_title", widget: "string" }
+      - { label: "SEO Description", name: "seo_desc", widget: "string" }
+      - { label: "First Heading", name: "firstHeading", widget: "string" }
+      - { label: "First Text", name: "firstText", widget: "text" }
+      - { label: "Second Heading", name: "secondHeading", widget: "string" }
+      - { label: "Second Text", name: "secondText", widget: "text" }
+      - { label: "Thrid Heading", name: "thirdHeading", widget: "string" }
+      - { label: "Third Text", name: "thirdText", widget: "text" }
+      - { label: "Featured Image", name: "featuredimage", widget: image }
+      - { label: "Video Link", name: "videoLink", widget: "string" }
+
+  - name: "home"
+    label: "Home"
+    folder: "src/pages/home"
+    fields:
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_index",
+        }
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "index-page",
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Name", name: "name", widget: "hidden", default: "home" }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
+      - { label: "SEO Title", name: "seo_title", widget: "string" }
+      - { label: "SEO Description", name: "seo_desc", widget: "string" }
+
+      - {
+          label: Carousel,
+          name: intro,
+          widget: object,
+          fields:
+            [
+              {
+                label: Slides,
+                name: blurbs,
+                widget: list,
+                fields:
+                  [
+                    { label: Image, name: image, widget: image },
+                    { label: Text, name: text, widget: string },
+                    { label: Link, name: link, widget: string },
+                  ],
+              },
+            ],
+        }
+      - {
+          label: Projects Categories,
+          name: projectCategories,
+          widget: object,
+          fields:
+            [
+              { label: Heading, name: heading, widget: string },
+              { label: Subheading, name: subheading, widget: string },
+              {
+                label: Categories,
+                name: categories,
+                widget: list,
+                fields:
+                  [
+                    { label: Image, name: image, widget: image },
+                    { label: Title, name: title, widget: string },
+                    { label: Text, name: text, widget: text },
+                    { label: Link, name: link, widget: string },
+                  ],
+              },
+            ],
+        }
+      - {
+          label: about company section,
+          name: aboutCompany,
+          widget: object,
+          fields:
+            [
+              { label: First Heading, name: firstHeading, widget: string },
+              {
+                label: First Description,
+                name: firstDescription,
+                widget: markdown,
+              },
+              { label: Youtube Link, name: videoLink, widget: string },
+              { label: Second Heading, name: secondHeading, widget: string },
+              {
+                label: Second Description,
+                name: secondDescription,
+                widget: markdown,
+              },
+              { label: Third Heading, name: thirdHeading, widget: string },
+              {
+                label: Testimonials,
+                name: testimonials,
+                widget: list,
+                fields:
+                  [
+                    { label: Image, name: image, widget: image },
+                    { label: Name, name: name, widget: string },
+                    { label: Title, name: title, widget: string },
+                    { label: Description, name: description, widget: text },
+                  ],
+              },
+            ],
+        }
+
+  - name: "services"
+    label: "Services"
+    folder: "src/pages/services"
+    fields:
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_services",
+        }
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "services-page",
+        }
+      - { label: "Name", name: "name", widget: "hidden", default: "services" }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
+      - { label: "Title", name: "title", widget: "hidden" }
+      - { label: "SEO Title", name: "seo_title", widget: "string" }
+      - { label: "SEO Description", name: "seo_desc", widget: "string" }
+      - {
+          label: Services,
+          name: services,
+          widget: object,
+          fields:
+            [
+              {
+                label: Service,
+                name: blurbs,
+                widget: list,
+                fields:
+                  [
+                    { label: Image, name: image, widget: image },
+                    { label: Title, name: title, widget: string },
+                    { label: Text, name: text, widget: string },
+                  ],
+              },
+            ],
+        }
+
+  - name: "education"
+    label: "Education"
+    folder: "src/pages/education"
+    fields:
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_education",
+        }
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "education-page",
+        }
+      - { label: "Name", name: "name", widget: "hidden", default: "education" }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
+      - { label: "Title", name: "title", widget: "hidden" }
+      - { label: "SEO Title", name: "seo_title", widget: "string" }
+      - { label: "SEO Description", name: "seo_desc", widget: "string" }
+      - { label: "Header Image", name: "headerImage", widget: image }
+      - { label: "Content Image", name: "contentImage", widget: image }
+      - { label: "Description", name: "description", widget: markdown }
+      - {
+          label: Universities,
+          name: universities,
+          widget: object,
+          fields:
+            [
+              {
+                label: University,
+                name: university,
+                widget: list,
+                fields:
+                  [
+                    { label: Image, name: universityImage, widget: image },
+                    { label: Title, name: title, widget: string },
+                    { label: Text, name: text, widget: string },
+                  ],
+              },
+            ],
+        }
+
+  - name: "contact"
+    label: "Contact"
+    folder: "src/pages/contact"
+    fields:
+      - {
+          label: "Page Key",
+          name: "pageKey",
+          widget: "hidden",
+          default: "page_contact",
+        }
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "contact-page",
+        }
+      - { label: "Name", name: "name", widget: "hidden", default: "contact" }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
+      - { label: "Title", name: "title", widget: "hidden" }
+      - { label: "SEO Title", name: "seo_title", widget: "string" }
+      - { label: "SEO Description", name: "seo_desc", widget: "string" }
+      - { label: "Header Title", name: "headerTitle", widget: string }
+      - { label: "Header Image", name: "headerImage", widget: image }
+      - { label: "Main Title", name: "mainTitle", widget: string }
+      - { label: "Description", name: "description", widget: text }
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/index.md"
+        label: "Landing Page"
+        name: "index"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "index-page",
+            }
+
+          - {
+              label: Carousel,
+              name: intro,
+              widget: object,
+              fields:
+                [
+                  {
+                    label: Slides,
+                    name: blurbs,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Image, name: image, widget: image },
+                        { label: Text, name: text, widget: string },
+                        { label: Link, name: link, widget: string },
+                      ],
+                  },
+                ],
+            }
+          - {
+              label: Projects Categories,
+              name: projectCategories,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Subheading, name: subheading, widget: string },
+                  {
+                    label: Categories,
+                    name: categories,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Image, name: image, widget: image },
+                        { label: Title, name: title, widget: string },
+                        { label: Text, name: text, widget: text },
+                        { label: Link, name: link, widget: string },
+                      ],
+                  },
+                ],
+            }
+          - {
+              label: about company section,
+              name: aboutCompany,
+              widget: object,
+              fields:
+                [
+                  { label: First Heading, name: firstHeading, widget: string },
+                  {
+                    label: First Description,
+                    name: firstDescription,
+                    widget: markdown,
+                  },
+                  { label: Youtube Link, name: videoLink, widget: string },
+                  {
+                    label: Second Heading,
+                    name: secondHeading,
+                    widget: string,
+                  },
+                  {
+                    label: Second Description,
+                    name: secondDescription,
+                    widget: markdown,
+                  },
+                  { label: Third Heading, name: thirdHeading, widget: string },
+                  {
+                    label: Sections,
+                    name: sections,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Title, name: title, widget: string },
+                        { label: Text, name: text, widget: text },
+                      ],
+                  },
+                ],
+            }
+
+      - file: "src/pages/about/index.md"
+        label: "About"
+        name: "about"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "about-page",
+            }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - file: "src/pages/products/index.md"
+        label: "Products Page"
+        name: "products"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "product-page",
+            }
+          - { label: Title, name: title, widget: string }
+          - { label: Image, name: image, widget: image }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Description, name: description, widget: string }
+          - {
+              label: Intro,
+              name: intro,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Blurbs,
+                    name: blurbs,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Image, name: image, widget: image },
+                        { label: Text, name: text, widget: text },
+                      ],
+                  },
+                ],
+            }
+          - {
+              label: Main,
+              name: main,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Image1,
+                    name: image1,
+                    widget: object,
+                    fields:
+                      [
+                        { label: Image, name: image, widget: image },
+                        { label: Alt, name: alt, widget: string },
+                      ],
+                  },
+                  {
+                    label: Image2,
+                    name: image2,
+                    widget: object,
+                    fields:
+                      [
+                        { label: Image, name: image, widget: image },
+                        { label: Alt, name: alt, widget: string },
+                      ],
+                  },
+                  {
+                    label: Image3,
+                    name: image3,
+                    widget: object,
+                    fields:
+                      [
+                        { label: Image, name: image, widget: image },
+                        { label: Alt, name: alt, widget: string },
+                      ],
+                  },
+                ],
+            }
+          - {
+              label: Testimonials,
+              name: testimonials,
+              widget: list,
+              fields:
+                [
+                  { label: Quote, name: quote, widget: string },
+                  { label: Author, name: author, widget: string },
+                ],
+            }
+          - { label: Full_image, name: full_image, widget: image }
+          - {
+              label: Pricing,
+              name: pricing,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: string },
+                  {
+                    label: Plans,
+                    name: plans,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Plan, name: plan, widget: string },
+                        { label: Price, name: price, widget: string },
+                        {
+                          label: Description,
+                          name: description,
+                          widget: string,
+                        },
+                        { label: Items, name: items, widget: list },
+                      ],
+                  },
+                ],
+            }
